@@ -14,6 +14,7 @@ app.flashes('erfolg')%}
         <td>Bestell Nr.</td>
         <td>Name</td>
         <td>Beschreibung</td>
+        <td>Kategorie</td>
         <td>Preis</td>
         <td>Löschen</td>
 
@@ -30,6 +31,7 @@ app.flashes('erfolg')%}
           }}</a>
         </td>
         <td>{{ gericht.beschreibung }}</td>
+        <td>{{ gericht.kategorie }}</td>
         <td>{{ gericht.preis }}</td>
         <td>
           <a href="{{ path('gericht.entfernen', { id: gericht.id }) }}">✘</a>
