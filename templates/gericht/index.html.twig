@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %} {% block body %} {%for message in
+app.flashes('erfolg')%}
+<div class="alert alert-success">
+  <h3>{{ message }}</h3>
+</div>
+{%endfor%}
+<br />
+<div class="container">
+  <h2>Gerichte bearbeiten</h2>
+  <br />
+  <table class="table table-sm table-striped">
+    <thead>
+      <tr class="table-secondary">
+        <td>Bestell Nr.</td>
+        <td>Name</td>
+        <td>Beschreibung</td>
+        <td>Preis</td>
+        <td>Löschen</td>
+
+        <td><a href="{{ path('gericht.anlegen') }}">Anlegen</a> </td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for gericht in gerichte%}
+      <tr>
+        <td>{{ gericht.id }}</td>
+        <td>
+          <a href="{{ path('gericht.anzeigen', { id: gericht.id }) }}">{{
+            gericht.name
+          }}</a>
+        </td>
+        <td>{{ gericht.beschreibung }}</td>
+        <td>{{ gericht.preis }}</td>
+        <td>
+          <a href="{{ path('gericht.entfernen', { id: gericht.id }) }}">✘</a>
+        </td>
+        <td> </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
