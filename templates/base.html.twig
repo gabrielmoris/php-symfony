@@ -44,15 +44,13 @@
         <img src="{{ asset('img/logo.png') }}" alt="" />
       </a>
       <div class="header-right">
-        {#
         <div class="user-panel">
           {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-          <a href="#" class="register">Login</a>
+          <a href="{{ path('app_login') }}" class="register">Login</a>
           {% endif %} {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          <a href="#" class="register">Logout</a>
+          <a href="{{ path('app_logout') }}" class="register">Logout</a>
           {% endif %}
         </div>
-        #}
       </div>
       <ul class="main-menu">
         <li>
@@ -67,7 +65,7 @@
         <li>
           <a href="#">Kellner</a>
         </li>
-        {# {% if is_granted('IS_AUTHENTICATED_FULLY') %} #}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <li>
           <a href="#">Mitarbeiter</a>
           <ul class="sub-menu">
@@ -77,20 +75,21 @@
             <li>
               <a href="{{ path('gericht.anlegen') }}">Anlegen</a>
             </li>
+
             {#
             <li>
               <a href="{{ path('bestellung') }}">Bestellungen</a>
             </li>
+            #}
             <li>
               <a href="{{ path('reg') }}">Registrieren</a>
             </li>
             <li>
               <a href="{{ path('app_logout') }}">Logout</a>
             </li>
-            #}
           </ul>
         </li>
-        {# {% endif %} #}
+        {% endif %}
       </ul>
     </header>
 
