@@ -42,4 +42,28 @@ class BestellungController extends AbstractController
 
         return $this->redirect($this->generateUrl('menu'));
     }
+
+    #[Route('/status/{id},{status}', name: 'status')]
+    public function status($id, $status, ManagerRegistry $doctrine){
+          // entity/manager
+          $em = $doctrine->getManager();
+          $bestellung=$em->getRepository(Bestellung::class)->find($id);
+
+          $bestellung->setStatus($status);
+          $em->flush();
+
+          return $this->redirect($this->generateUrl('bestellung'));
+    }
+
+    
+    #[Route('/loeschen/{id}', name: 'loeschen')]
+    public function loeschen(ManagerRegistry $doctrine, $id, BestellungRepository $br): Response
+    {
+        $em = $doctrine->getManager();
+        $bestellung = $br->find($id);
+        $em->remove($bestellung);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('bestellung'));
+    }
 }
