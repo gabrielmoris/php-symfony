@@ -17,7 +17,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class RegistrierungController extends AbstractController
 {
-    #[Route('/reg', name: 'app_reg')]
+    #[Route('/reg', name: 'reg')]
     public function reg(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine): Response
     {
 
