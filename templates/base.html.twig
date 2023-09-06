@@ -11,7 +11,6 @@
     <link href="{{ asset('img/favicon.ico') }}" rel="shortcut icon" />
 
     <!-- Google font -->
-
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap"
       rel="stylesheet"
@@ -38,7 +37,6 @@
     </div>
 
     <!-- Header section -->
-
     <header class="header-section clearfix">
       <a href="{{ path('app_home') }}" class="site-logo">
         <img src="{{ asset('img/logo.png') }}" alt="" />
@@ -63,7 +61,7 @@
           <a href="{{ path('bestellung') }}">Bestellungen</a>
         </li>
         <li>
-          <a href="#">Kellner</a>
+          <a href="{{ path('mail') }}">Kellner</a>
         </li>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <li>
@@ -75,11 +73,9 @@
             <li>
               <a href="{{ path('gericht.anlegen') }}">Anlegen</a>
             </li>
-
             <li>
               <a href="{{ path('bestellung') }}">Bestellungen</a>
             </li>
-
             <li>
               <a href="{{ path('reg') }}">Registrieren</a>
             </li>
@@ -91,7 +87,6 @@
         {% endif %}
       </ul>
     </header>
-
     <!-- Header section end -->
     {%block body%} {%endblock%}
     <!-- Intro section -->
@@ -113,7 +108,7 @@
               das Dessertbuffet mit frischen und hausgemachten Leckereien auf
               euch.
             </p>
-            <a href="#" class="site-btn">Try it now</a>
+            <a href="{{ path('menu') }}" class="site-btn">Try it now</a>
           </div>
         </div>
       </div>
