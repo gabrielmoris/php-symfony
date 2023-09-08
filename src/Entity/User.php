@@ -6,10 +6,19 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    public static function loadValidatorMetadata(ClassMetadata $metadata){
+        $metadata->addPropertyConstraint('rawPassword', new Assert\NotCompromisedPassword(['message'=> 'Dieses Passwort wurde geleaked. Bitte verwenden Sie ein anderes Passwort']));
+    }
+
+    private $rawPassword;
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -84,6 +93,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getRawPassword(): string
+    {
+        return $this->rawPassword;
+    }
+
+    public function setRawPassword(string $rawPassword): static
+    {
+        $this->rawPassword = $rawPassword;
 
         return $this;
     }
